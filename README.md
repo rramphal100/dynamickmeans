@@ -1,1 +1,1 @@
-TO-DO: Write here how to run our code with the correct dataset.
+"python main.py" to run the code. It will print out IV/EV, given a number for k.
