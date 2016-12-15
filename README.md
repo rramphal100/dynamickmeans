@@ -1,2 +1,1 @@
-# dynamickmeans
-Machine Learning class final project: implement an algorithm to determine the optimal k value for k-means clustering.
+TO-DO: Write here how to run our code with the correct dataset.
