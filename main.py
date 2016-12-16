@@ -1,6 +1,7 @@
 import numpy as np 
 import random as rand
 from math import sqrt
+from datetime import datetime
 
 def euclideanDistance(list1, list2):
 	sum = 0
@@ -25,7 +26,7 @@ def updateCentroids(dataSet, centSet, clusSet, k):
 dataSet = []
 centSet = []
 clusSet = []
-rand.seed(1) # To get same random numbers each time
+rand.seed(datetime.now()) # To get same random numbers each time
 
 with open("dow_jones_index.data", "r") as file:
 	file.readline(); # Ignore first row
