@@ -26,7 +26,7 @@ def updateCentroids(dataSet, centSet, clusSet, k):
 dataSet = []
 centSet = []
 clusSet = []
-rand.seed(datetime.now()) # To get same random numbers each time
+rand.seed(datetime.now()) # To get different random numbers each time
 
 with open("dow_jones_index.data", "r") as file:
 	file.readline(); # Ignore first row
