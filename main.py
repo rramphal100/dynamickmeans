@@ -42,7 +42,7 @@ for k in range(1, len(dataSet)):
 	clusSet = []
 	# Generate random centroid values
 	for x in range(0, k):
-		randomRow = dataSet[rand.randint(0, len(dataSet))]
+		randomRow = dataSet[rand.randint(0, len(dataSet)-1)]
 		centSet.append(randomRow)
 		clusSet.append([])
 
