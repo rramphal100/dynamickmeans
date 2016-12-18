@@ -10,9 +10,10 @@ def euclideanDistance(list1, list2):
 	return sqrt(sum)
 
 # Debugging
-def printSet(set):
-	for line in set:
-		print(line)
+def printClusSet(set):
+	for clus in xrange(0, len(set)):
+		print "Cluster #", clus, ": ", set[clus]
+
 
 # Update centroids based on the average of all the points in that cluster
 def updateCentroids(dataSet, centSet, clusSet, k):
@@ -26,17 +27,32 @@ def updateCentroids(dataSet, centSet, clusSet, k):
 dataSet = []
 centSet = []
 clusSet = []
+maxValues = []
 rand.seed(datetime.now()) # To get different random numbers each time
 
+# Read data input, get the max values to normalize
 with open("dow_jones_index.data", "r") as file:
-	file.readline(); # Ignore first row
+	columns = len(file.readline().split(",")) # Ignore first row
+	maxValues = [0] * columns
+	for line in file:
+		lineList = line.split(",")[3:-1]
+		lineList.append(line.split(",")[-1][:-2]) # Last column has trailing \r\n
+		if '' not in lineList:
+			lineList = [abs(float(attr)) for attr in lineList] # Convert everything to positive float
+			maxValues = [max(maxVal, dataVal) for maxVal, dataVal in zip(maxValues, lineList)]
+
+# Read data input, initialize data set
+with open("dow_jones_index.data", "r") as file:
+	file.readline() # Ignore first row
 	for line in file:
 		lineList = line.split(",")[3:-1]
 		lineList.append(line.split(",")[-1][:-2]) # Last column has trailing \r\n
 		if '' not in lineList: # Ignore data row with missing values
 			lineList = [float(i) for i in lineList] # Convert strings to float
+			lineList = [dataVal / maxVal for dataVal, maxVal in zip(lineList, maxValues)] # Normalize by dividing by max value
 			dataSet.append(lineList)
 
+# Start iterations for clustering with dynamic k
 for k in range(1, len(dataSet)):
 	centSet = []
 	clusSet = []
@@ -76,6 +92,10 @@ for k in range(1, len(dataSet)):
 					clusSet[clus].remove(dataRow)
 					clusSet[assignClus].append(dataRow)
 					needsUpdate = True
+		# DON: DELETE THIS AND USE THE LINE BELOW IF YOU WANT CLUSTER AFTER EACH UPDATE
+		# WARNING: THERE ARE TOO MANY NUMBERS FOR A HUMAN TO PROCESS
+		# VVVVV USE THIS VVVVV
+		# printSet(clusSet)
 		updateCentroids(dataSet, centSet, clusSet, k)
 
 	# Calculate IV
@@ -95,6 +115,7 @@ for k in range(1, len(dataSet)):
 
 	if EV != 0:
 		print "K = ", k
-		print IV/EV
-		print "========================"
+		printClusSet(clusSet)
+		print "IV/EV =", IV/EV
+		print "======================================================================="
 
