@@ -95,7 +95,7 @@ for k in range(1, len(dataSet)):
 		# DON: DELETE THIS AND USE THE LINE BELOW IF YOU WANT CLUSTER AFTER EACH UPDATE
 		# WARNING: THERE ARE TOO MANY NUMBERS FOR A HUMAN TO PROCESS
 		# VVVVV USE THIS VVVVV
-		# printSet(clusSet)
+		# printClusSet(clusSet)
 		updateCentroids(dataSet, centSet, clusSet, k)
 
 	# Calculate IV
