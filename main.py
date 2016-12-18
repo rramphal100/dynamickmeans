@@ -14,6 +14,13 @@ def printClusSet(set):
 	for clus in xrange(0, len(set)):
 		print "Cluster #", clus, ": ", set[clus]
 
+# More Debugging
+def printClusStockNames(set):
+	for clus in xrange(0, len(set)):
+		print "Cluster #", clus, ": "
+		for point in set[clus]:
+			print stockSet[dataSet.index(point)], " "
+
 
 # Update centroids based on the average of all the points in that cluster
 def updateCentroids(dataSet, centSet, clusSet, k):
@@ -24,6 +31,7 @@ def updateCentroids(dataSet, centSet, clusSet, k):
 				newCent = [attr1 + attr2 for attr1, attr2 in zip(dataSet[dataRow], newCent)] # Add up all respective points
 			centSet[clus] = [attr/len(clusSet[clus]) for attr in newCent]
 
+stockSet = []
 dataSet = []
 centSet = []
 clusSet = []
@@ -51,6 +59,16 @@ with open("dow_jones_index.data", "r") as file:
 			lineList = [float(i) for i in lineList] # Convert strings to float
 			lineList = [dataVal / maxVal for dataVal, maxVal in zip(lineList, maxValues)] # Normalize by dividing by max value
 			dataSet.append(lineList)
+
+# Store data set with stock symbols for easy analysis of cluster data point identities
+with open("dow_jones_index.data", "r") as file:
+	file.readline() # Ignore first row
+	counter = 0
+	for line in file:
+		stockName = line.split(",")[1]
+		if '' not in lineList:
+			stockSet.append(stockName)
+			counter += 1
 
 # Start iterations for clustering with dynamic k
 for k in range(1, len(dataSet)):
@@ -116,6 +134,30 @@ for k in range(1, len(dataSet)):
 	if EV != 0:
 		print "K = ", k
 		printClusSet(clusSet)
-		print "IV/EV =", IV/EV
+		print stockSet
+		printClusStockNames(clusSet)
+		print "IV/EV = ", IV/EV
 		print "======================================================================="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
