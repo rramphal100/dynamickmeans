@@ -18,8 +18,10 @@ def printClusSet(set):
 def printClusStockNames(set):
 	for clus in xrange(0, len(set)):
 		print "Cluster #", clus, ": "
+		clusList = []
 		for point in set[clus]:
-			print stockSet[dataSet.index(point)], " "
+			 clusList.append(stockSet[point])
+		print clusList
 
 
 # Update centroids based on the average of all the points in that cluster
@@ -133,8 +135,7 @@ for k in range(1, len(dataSet)):
 
 	if EV != 0:
 		print "K = ", k
-		printClusSet(clusSet)
-		print stockSet
+		#printClusSet(clusSet)
 		printClusStockNames(clusSet)
 		print "IV/EV = ", IV/EV
 		print "======================================================================="
