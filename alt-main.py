@@ -6,6 +6,8 @@ from sklearn import datasets
 import random as rand
 from datetime import datetime
 
+np.random.seed(datetime.now())
+
 dataSet = []
 stockSet = []
 maxValues = []
