@@ -4,3 +4,6 @@ The main program is in the code file **main.py**. This code is written in Python
 
 Once you have Python 2 installed on your machine, open your command line and navigate to the folder containing this project. Then execute the command **python main.py** to run the code. It will print out IV/EV, given a number from k = 1 to k = size of data setkl
 The Dow Jones dataset was taken from: <http://archive.ics.uci.edu/ml/datasets/Dow+Jones+Index>
+
+To use the analysis code written in R, a version of R has to be installed.
+Be sure to save a copy of the dataset on your desktop prior to executing the R code. To execute, navigate to the folder containing the R code file **rcode.R**. Then, type the command "r -f rcode.R" to run the code and view the output.
