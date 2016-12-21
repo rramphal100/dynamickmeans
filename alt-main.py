@@ -1,12 +1,7 @@
 from sklearn.cluster import KMeans
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from sklearn import datasets
-import random as rand
-from datetime import datetime
-
-np.random.seed(datetime.now())
 
 dataSet = []
 stockSet = []
@@ -62,29 +57,3 @@ for i in range(len(dataSet[0])):
 	print avg / len(dataSet), ", ",
 
 print '\n'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
